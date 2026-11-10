@@ -1,0 +1,1264 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Um espaço para compartilhar momentos de superação, esperança e recomeços.">
+<meta name="theme-color" content="#466b5a">
+<title>Encontro de Superações</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{--bg:#f7f4ef;--text:#26312d;--muted:#68736e;--accent:#6d927f;--accent-dark:#466b5a;--soft:#dcebe2;--paper:#fff;--line:#e4eae5;--shadow:0 18px 50px rgba(48,63,56,.10)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--text);background:radial-gradient(circle at 10% 10%,#e5f0e8 0,transparent 28%),radial-gradient(circle at 90% 15%,#f1e3cd 0,transparent 25%),var(--bg);font-family:"DM Sans",sans-serif;transition:background .2s,color .2s}
+body.dark{--bg:#151d19;--text:#e8eee9;--muted:#aab8af;--accent:#8eb59e;--accent-dark:#a8cbb5;--soft:#263b30;--paper:#202b25;--line:#34433a;--shadow:0 18px 50px rgba(0,0,0,.25);background:radial-gradient(circle at 10% 10%,#24382d 0,transparent 28%),radial-gradient(circle at 90% 15%,#3a3024 0,transparent 25%),var(--bg)}
+
+header{position:relative;overflow:hidden;min-height:610px;display:flex;align-items:center;justify-content:center;text-align:center;padding:105px 22px 80px;background:linear-gradient(135deg,rgba(49,76,65,.96),rgba(91,126,108,.88));color:#fff}
+header:before,header:after{content:"";position:absolute;border-radius:50%;border:1px solid rgba(255,255,255,.15)}
+header:before{width:520px;height:520px;right:-180px;top:-180px}
+header:after{width:360px;height:360px;left:-160px;bottom:-180px}
+
+nav{position:absolute;z-index:3;top:0;left:0;width:100%;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:18px 12px;background:rgba(30,55,44,.2);backdrop-filter:blur(10px)}
+nav a,nav button{color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);padding:9px 13px;border-radius:999px;font:600 13px "DM Sans";cursor:pointer}
+
+.hero{position:relative;z-index:1;max-width:850px}
+.tag{display:inline-block;padding:9px 16px;border:1px solid rgba(255,255,255,.25);border-radius:999px;background:rgba(255,255,255,.1);font-size:13px;letter-spacing:1.5px;text-transform:uppercase}
+h1{margin:24px 0 18px;font-family:"Playfair Display",serif;font-size:clamp(48px,8vw,88px);line-height:.98;letter-spacing:-2px}
+.hero p{margin:auto;max-width:700px;color:rgba(255,255,255,.88);font-size:clamp(17px,2.2vw,21px);line-height:1.8}
+
+.hero-buttons{margin-top:34px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:0;border-radius:14px;padding:13px 19px;font:inherit;font-weight:700;text-decoration:none;cursor:pointer;transition:.2s}
+.btn:hover{transform:translateY(-2px)}
+.primary{background:#fff;color:#466b5a}
+.outline{color:#fff;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.08)}
+.submit{background:var(--accent-dark);color:#fff}
+.secondary{background:var(--soft);color:var(--text)}
+.danger{background:#f8e4e0;color:#8d4a3f}
+.small{padding:8px 11px;border-radius:10px;font-size:13px}
+
+main{width:min(1120px,calc(100% - 32px));margin:-55px auto 80px;position:relative;z-index:2}
+.intro,.form-card,.panel,.daily,.achievement-form{background:var(--paper);border-radius:24px;box-shadow:var(--shadow);border:1px solid var(--line)}
+.intro{padding:34px;text-align:center}
+.intro h2,.section-title,.form-card h2,.panel h2,.daily h2{font-family:"Playfair Display",serif}
+.intro h2{margin:0 0 12px;font-size:34px}
+.intro p{max-width:760px;margin:auto;color:var(--muted);line-height:1.8}
+
+.daily{margin-top:22px;padding:25px 30px;text-align:center;background:linear-gradient(135deg,var(--soft),var(--paper))}
+.daily .eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:1.4px;color:var(--accent-dark);font-weight:700}
+.daily h2{font-size:25px;margin:9px 0}
+.daily p{margin:0;color:var(--muted);line-height:1.7}
+
+.form-card,.panel,.achievement-form{margin-top:24px;padding:30px}
+.form-card h2,.panel h2{margin:0 0 6px;font-size:29px}
+.subtitle{color:var(--muted);margin:0 0 22px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:8px}
+.full{grid-column:1/-1}
+label{font-weight:700;font-size:14px}
+
+input,textarea,select{width:100%;border:1px solid var(--line);background:var(--paper);color:var(--text);border-radius:13px;padding:13px 14px;font:inherit;outline:none}
+textarea{min-height:125px;resize:vertical}
+input:focus,textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 4px rgba(109,146,127,.12)}
+input[type=file]{padding:10px}
+.checkline{display:flex;align-items:center;gap:9px;color:var(--muted);font-size:14px}
+.checkline input{width:auto}
+
+.submit-row{margin-top:18px;display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+.status{margin-top:14px;padding:12px 15px;border-radius:12px;display:none;font-weight:600}
+.status.show{display:block}
+.status.ok{background:var(--soft);color:var(--accent-dark)}
+.status.err{background:#f8e4e0;color:#8d4a3f}
+
+.section-head{margin:58px 0 20px;display:flex;align-items:end;justify-content:space-between;gap:20px}
+.section-title{margin:0;font-size:39px}
+.section-description{margin:5px 0 0;color:var(--muted)}
+.count{color:var(--muted);font-size:14px}
+
+.filters{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:10px;margin-bottom:18px}
+.relatos{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{overflow:hidden;background:var(--paper);border-radius:21px;box-shadow:0 12px 35px rgba(48,63,56,.08);border:1px solid var(--line);transition:.25s}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.card-image{width:100%;height:205px;object-fit:cover;display:block}
+.no-image{height:135px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e5f0e8,#f1e3cd);color:#466b5a;font:25px "Playfair Display",serif}
+.card-body{padding:20px}
+.card h3{margin:0 0 9px;font:600 23px "Playfair Display",serif}
+.card p{margin:0;color:var(--muted);line-height:1.7;white-space:pre-line;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.date{display:block;margin-top:15px;color:var(--muted);font-size:12px}
+.card-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}
+.reaction{border:1px solid var(--line);background:var(--paper);color:var(--text);padding:7px 10px;border-radius:999px;cursor:pointer;font:600 13px "DM Sans"}
+.reaction.active{background:var(--soft);border-color:var(--accent)}
+.empty{grid-column:1/-1;text-align:center;padding:50px 22px;border:1px dashed #aebdb3;border-radius:22px;color:var(--muted);background:var(--paper)}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.achievement-list,.favorite-list{display:grid;gap:10px}
+.achievement-item,.favorite-item,.comment{padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--paper)}
+.achievement-item strong,.favorite-item strong{display:block;margin-bottom:5px}
+.achievement-item p,.favorite-item p{margin:0;color:var(--muted);line-height:1.6;font-size:14px}
+
+.comments{margin-top:18px;border-top:1px solid var(--line);padding-top:15px}
+.comments h4{margin:0 0 10px}
+.comment-list{display:grid;gap:8px;margin-bottom:12px}
+.comment p{margin:5px 0 0;white-space:pre-wrap;overflow-wrap:anywhere;color:var(--muted);font-size:14px}
+.comment small{color:var(--muted)}
+.comment-form{display:flex;gap:8px}
+.comment-form input{min-width:0}
+.comment-form button{flex-shrink:0}
+
+.panel{display:none}
+.panel.show{display:block}
+.admin-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.admin-row input{max-width:260px}
+
+footer{padding:40px 20px 55px;text-align:center;color:var(--muted);font-size:14px}
+footer strong{color:var(--accent-dark)}
+
+.modal-backdrop{position:fixed;inset:0;background:rgba(26,38,33,.72);backdrop-filter:blur(7px);display:none;align-items:center;justify-content:center;padding:18px;z-index:20}
+.modal-backdrop.show{display:flex}
+.modal{position:relative;width:min(760px,100%);max-height:92vh;overflow:auto;background:var(--paper);color:var(--text);border-radius:24px;box-shadow:0 30px 90px rgba(0,0,0,.25)}
+.modal img{width:100%;max-height:380px;object-fit:cover;display:block}
+.modal-content{padding:25px}
+.modal h2{font:600 32px "Playfair Display",serif;margin:0 0 12px}
+.modal-text{white-space:pre-line;color:var(--muted);line-height:1.85}
+.close{position:absolute;right:14px;top:14px;width:40px;height:40px;border:0;border-radius:50%;background:rgba(0,0,0,.6);color:#fff;font-size:24px;cursor:pointer;z-index:2}
+.modal-no-image{height:190px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#e5f0e8,#f1e3cd);font:600 28px "Playfair Display";color:#466b5a}
+
+.theme-toggle{position:fixed;right:18px;bottom:18px;z-index:10;border:0;border-radius:999px;padding:13px 16px;background:var(--accent-dark);color:#fff;box-shadow:var(--shadow);font-weight:700;cursor:pointer}
+
+/* Tela de boas-vindas */
+.welcome-backdrop{position:fixed;inset:0;z-index:50;background:rgba(26,38,33,.76);backdrop-filter:blur(9px);display:flex;align-items:center;justify-content:center;padding:20px}
+.welcome-box{width:min(520px,100%);background:var(--paper);color:var(--text);border:1px solid var(--line);border-radius:26px;padding:35px 30px;text-align:center;box-shadow:0 30px 90px rgba(0,0,0,.28);animation:welcomePop .25s ease}
+.welcome-icon{font-size:42px;margin-bottom:10px}
+.welcome-box h2{font:700 32px "Playfair Display",serif;color:var(--accent-dark);margin:0 0 12px}
+.welcome-box p{color:var(--muted);line-height:1.75;margin:0 0 22px}
+.welcome-box .btn{min-width:160px}
+.music-hint{display:block;margin-top:12px;color:var(--muted);font-size:12px}
+@keyframes welcomePop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+
+@media(max-width:850px){
+.relatos{grid-template-columns:repeat(2,1fr)}
+.filters{grid-template-columns:1fr 1fr}
+.filters input{grid-column:1/-1}
+}
+@media(max-width:620px){
+header{min-height:630px;padding-top:130px}
+nav{gap:5px}
+nav a,nav button{font-size:11px;padding:8px 10px}
+.intro,.form-card,.panel,.achievement-form{padding:23px 18px}
+.relatos,.two-col,.grid,.filters{grid-template-columns:1fr}
+.full{grid-column:auto}
+.section-head{display:block}
+.count{display:block;margin-top:9px}
+.section-title{font-size:32px}
+.comment-form{flex-direction:column}
+.daily{padding:22px 18px}
+.theme-toggle{right:12px;bottom:12px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav aria-label="Navegação principal">
+<a href="#inicio">Início</a>
+<a href="#compartilhar">Compartilhar</a>
+<a href="#momentos">Relatos</a>
+<a href="#conquistas">Conquistas</a>
+<a href="#favoritos">Favoritos</a>
+<a href="#admin">Administração</a>
+</nav>
+
+<div class="hero" id="inicio">
+<span class="tag">Um espaço para recomeçar</span>
+<h1>Encontro de<br>Superações</h1>
+<p>Momentos reais, palavras que acolhem e lembranças de que mesmo depois dos dias difíceis, novos capítulos podem nascer.</p>
+<div class="hero-buttons">
+<a class="btn primary" href="#compartilhar">Compartilhar momento</a>
+<a class="btn outline" href="#momentos">Ver momentos</a>
+</div>
+</div>
+</header>
+
+<main>
+
+<section class="intro">
+<h2>Todo momento importa.</h2>
+<p>Todos enfrentamos momentos que parecem difíceis demais. Este espaço existe para lembrar que uma fase difícil não define uma vida inteira. Compartilhe uma experiência, uma conquista, um recomeço ou palavras que possam inspirar alguém.</p>
+</section>
+
+<section class="daily" aria-live="polite">
+<span class="eyebrow">🌿 Mensagem do dia</span>
+<h2 id="dailyQuote">Cada pequeno passo também é uma conquista.</h2>
+<p id="dailyAuthor">Um lembrete para hoje</p>
+</section>
+
+<section class="form-card" id="compartilhar">
+<h2>Compartilhe um momento</h2>
+<p class="subtitle">Seu momento pode ser a palavra que alguém precisava encontrar hoje.</p>
+
+<form id="relatoForm">
+<div class="grid">
+<div class="field">
+<label for="titulo">Título</label>
+<input id="titulo" maxlength="100" placeholder="Ex.: O dia em que decidi recomeçar" required>
+</div>
+
+<div class="field">
+<label for="categoria">Categoria</label>
+<select id="categoria">
+<option value="Superação">Superação</option>
+<option value="Conquista">Conquista</option>
+<option value="Recomeço">Recomeço</option>
+<option value="Mensagem de apoio">Mensagem de apoio</option>
+</select>
+</div>
+
+<div class="field full">
+<label for="foto">Foto (opcional)</label>
+<input id="foto" type="file" accept="image/png,image/jpeg,image/webp">
+</div>
+
+<div class="field full">
+<label for="texto">Seu momento</label>
+<textarea id="texto" maxlength="5000" placeholder="Conte seu momento, uma conquista, uma dificuldade que você conseguiu atravessar ou uma mensagem de esperança..." required></textarea>
+</div>
+
+<div class="field full">
+<label class="checkline"><input id="anonimo" type="checkbox"> Publicar como desabafo anônimo</label>
+</div>
+</div>
+
+<div class="submit-row">
+<button class="btn submit" id="submitBtn" type="submit">Adicionar relato</button>
+</div>
+<div id="status" class="status"></div>
+</form>
+</section>
+
+<section id="momentos">
+<div class="section-head">
+<div>
+<h2 class="section-title">Momentos que inspiram</h2>
+<p class="section-description">Pesquise, filtre e encontre histórias que possam acolher você.</p>
+</div>
+<span class="count" id="count">Carregando...</span>
+</div>
+
+<div class="filters">
+<input id="searchInput" type="search" placeholder="Pesquisar por título ou texto..." aria-label="Pesquisar relatos">
+<select id="categoryFilter" aria-label="Filtrar por categoria">
+<option value="">Todas as categorias</option>
+<option>Superação</option>
+<option>Conquista</option>
+<option>Recomeço</option>
+<option>Mensagem de apoio</option>
+<option>Desabafo anônimo</option>
+</select>
+<select id="sortFilter" aria-label="Ordenar relatos">
+<option value="newest">Mais recentes</option>
+<option value="oldest">Mais antigos</option>
+<option value="popular">Mais curtidos</option>
+</select>
+</div>
+
+<div class="relatos" id="relatos">
+<div class="empty">Carregando relatos...</div>
+</div>
+</section>
+
+<section id="conquistas" class="achievement-form">
+<h2 class="section-title">Mural de conquistas</h2>
+<p class="subtitle">Vitórias pequenas ou grandes merecem ser celebradas.</p>
+
+<form id="achievementForm">
+<div class="grid">
+<div class="field">
+<label for="achievementTitle">Sua conquista</label>
+<input id="achievementTitle" maxlength="100" placeholder="Ex.: Consegui dar o primeiro passo" required>
+</div>
+
+<div class="field">
+<label for="achievementCategory">Tipo de conquista</label>
+<select id="achievementCategory">
+<option>Pequena vitória</option>
+<option>Recomeço</option>
+<option>Objetivo alcançado</option>
+<option>Aprendizado</option>
+</select>
+</div>
+
+<div class="field full">
+<label for="achievementText">Conte um pouco (opcional)</label>
+<textarea id="achievementText" maxlength="1000" placeholder="Compartilhe por que esse momento é importante..."></textarea>
+</div>
+</div>
+
+<div class="submit-row">
+<button class="btn submit" type="submit">Compartilhar conquista</button>
+</div>
+<div id="achievementStatus" class="status"></div>
+</form>
+
+<div id="achievementList" class="achievement-list" style="margin-top:18px">
+<div class="empty">Carregando conquistas...</div>
+</div>
+</section>
+
+<div class="two-col">
+
+<section id="favoritos" class="panel show">
+<h2>♡ Relatos salvos</h2>
+<p class="subtitle">Seus favoritos ficam associados a este navegador/usuário.</p>
+<div id="favoriteList" class="favorite-list">
+<p class="subtitle">Carregando...</p>
+</div>
+</section>
+
+<section id="admin" class="panel">
+<h2>Área administrativa</h2>
+<p class="subtitle">Entre com a conta administrativa para moderar publicações e denúncias.</p>
+
+<form id="adminLogin">
+<div class="field">
+<label for="adminEmail">E-mail administrativo</label>
+<input id="adminEmail" type="email" autocomplete="username" required>
+</div>
+
+<div class="field" style="margin-top:10px">
+<label for="adminPassword">Senha</label>
+<input id="adminPassword" type="password" autocomplete="current-password" required>
+</div>
+
+<div class="submit-row">
+<button class="btn submit" type="submit">Entrar</button>
+</div>
+</form>
+
+<div id="adminStatus" class="status"></div>
+
+<div id="adminTools" style="display:none">
+<div class="admin-row">
+<strong id="adminIdentity"></strong>
+<button id="adminLogout" class="btn secondary small" type="button">Sair</button>
+</div>
+
+<h3>Relatos para moderação</h3>
+<div id="adminReports" class="favorite-list"></div>
+
+<h3 style="margin-top:22px">Denúncias recebidas</h3>
+<div id="reportList" class="favorite-list"></div>
+</div>
+</section>
+</div>
+</main>
+
+<footer>
+<strong>Encontro de Superações</strong><br>
+Um espaço para lembrar que cada momento pode ser guardado.
+</footer>
+
+<!-- MENSAGEM DE BOAS-VINDAS -->
+<div class="welcome-backdrop" id="welcomeBackdrop" role="dialog" aria-modal="true" aria-labelledby="welcomeTitle">
+<div class="welcome-box">
+<div class="welcome-icon">🌿</div>
+<h2 id="welcomeTitle">Que bom ter você aqui.</h2>
+<p>Este é um espaço de acolhimento, esperança e recomeços. Cada história importa, cada conquista merece ser celebrada e ninguém precisa atravessar os momentos difíceis se sentindo sozinho.</p>
+<button class="btn submit" id="welcomeStart" type="button">Começar</button>
+<span class="music-hint">Ao começar, a música será reproduzida em volume baixo.</span>
+</div>
+</div>
+
+<!-- Coloque tempo-perdido.mp3 na mesma pasta deste arquivo -->
+<audio id="welcomeMusic" src="tempo-perdido.mp3" preload="auto" loop></audio>
+
+<button class="theme-toggle" id="themeToggle" type="button" aria-label="Alternar modo escuro">🌙 Modo escuro</button>
+
+<div class="modal-backdrop" id="modalBackdrop">
+<div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+<button class="close" id="closeModal" aria-label="Fechar">×</button>
+<div id="modalImage"></div>
+
+<div class="modal-content">
+<h2 id="modalTitle"></h2>
+<div class="modal-text" id="modalText"></div>
+<div id="modalMeta" class="date"></div>
+
+<div class="comments">
+<h4>Comentários de apoio</h4>
+<div id="commentList" class="comment-list"></div>
+
+<form id="commentForm" class="comment-form">
+<input id="commentInput" maxlength="500" placeholder="Deixe uma mensagem respeitosa..." required>
+<button class="btn submit small" type="submit">Comentar</button>
+</form>
+<div id="commentStatus" class="status"></div>
+</div>
+</div>
+</div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.4.0/firebase-app.js";
+import {
+ getAuth,
+ signInAnonymously,
+ signInWithEmailAndPassword,
+ signOut,
+ onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-auth.js";
+
+import {
+ getDatabase,
+ ref as dbRef,
+ push,
+ get,
+ set,
+ update,
+ remove,
+ query,
+ orderByChild,
+ limitToLast
+} from "https://www.gstatic.com/firebasejs/12.4.0/firebase-database.js";
+
+/*
+CONFIGURAÇÃO:
+
+1. Mantenha os dados do seu app Firebase em firebaseConfig.
+2. Crie um usuário administrativo em Firebase Authentication > Users (e-mail/senha).
+3. Copie o UID desse usuário e coloque em ADMIN_UID.
+4. Configure as regras do Realtime Database.
+
+A verificação no navegador melhora a experiência, mas a segurança real
+depende das regras do Firebase.
+*/
+
+const firebaseConfig = {
+  apiKey: "AIzaSyABjL9YdF1V_3xFHdDj_YhS7Z_08zpwpsU",
+  authDomain: "site-3f75f.firebaseapp.com",
+  projectId: "site-3f75f",
+  storageBucket: "site-3f75f.firebasestorage.app",
+  messagingSenderId: "1048744166939",
+  appId: "1:1048744166939:web:37d8b0ab46fd735cf59abe",
+  measurementId: "G-8B9Z0GS5ZN"
+};
+
+const ADMIN_UID = "COLE_AQUI_O_UID_DO_ADMIN";
+
+const $ = id => document.getElementById(id);
+
+const form = $("relatoForm");
+const titleInput = $("titulo");
+const textInput = $("texto");
+const photoInput = $("foto");
+const statusBox = $("status");
+const relatosBox = $("relatos");
+const countBox = $("count");
+const modalBackdrop = $("modalBackdrop");
+
+let app, auth, database, currentUser = null;
+let allRelatos = [];
+let activeRelato = null;
+
+const quotes = [
+ ["Você não precisa resolver tudo hoje. Um passo de cada vez também é caminho.","Um lembrete para hoje"],
+ ["A sua história não termina em um dia difícil.","Um lembrete para hoje"],
+ ["Recomeçar também é uma forma de coragem.","Um lembrete para hoje"],
+ ["Até as pequenas vitórias merecem ser reconhecidas.","Um lembrete para hoje"],
+ ["Você merece o mesmo carinho que oferece aos outros.","Um lembrete para hoje"],
+ ["O tempo de cada pessoa é diferente. Respeite o seu.","Um lembrete para hoje"],
+ ["Continuar tentando já pode ser uma grande conquista.","Um lembrete para hoje"]
+];
+
+const quoteIndex = Math.floor(Date.now()/86400000) % quotes.length;
+$("dailyQuote").textContent = quotes[quoteIndex][0];
+$("dailyAuthor").textContent = quotes[quoteIndex][1];
+
+function showStatus(el,msg,type="ok"){
+ el.textContent = msg;
+ el.className = "status show " + type;
+}
+
+function escapeHtml(v){
+ return String(v??"").replace(/[&<>"']/g,c=>({
+  "&":"&amp;",
+  "<":"&lt;",
+  ">":"&gt;",
+  '"':"&quot;",
+  "'":"&#039;"
+ }[c]));
+}
+
+function dateText(v){
+ if(!v)return "";
+ const d = new Date(v);
+ return Number.isNaN(d.getTime()) ? "" :
+ new Intl.DateTimeFormat("pt-BR",{dateStyle:"long"}).format(d);
+}
+
+function isAdmin(){
+ return !!currentUser &&
+ currentUser.uid === ADMIN_UID &&
+ ADMIN_UID !== "COLE_AQUI_O_UID_DO_ADMIN";
+}
+
+function requireUser(){
+ if(!currentUser)throw new Error("A conexão ainda está sendo preparada. Tente novamente.");
+ return currentUser;
+}
+
+async function compressImage(file){
+ const img = await new Promise((resolve,reject)=>{
+  const image = new Image();
+  const url = URL.createObjectURL(file);
+
+  image.onload = ()=>{
+   URL.revokeObjectURL(url);
+   resolve(image);
+  };
+
+  image.onerror = ()=>{
+   URL.revokeObjectURL(url);
+   reject(new Error("Não foi possível abrir a imagem."));
+  };
+
+  image.src = url;
+ });
+
+ const scale = Math.min(1,700/Math.max(img.width,img.height));
+ const canvas = document.createElement("canvas");
+
+ canvas.width = Math.max(1,Math.round(img.width*scale));
+ canvas.height = Math.max(1,Math.round(img.height*scale));
+
+ canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);
+
+ return canvas.toDataURL("image/jpeg",.62);
+}
+
+async function initialize(){
+ app = initializeApp(firebaseConfig);
+ auth = getAuth(app);
+ database = getDatabase(app);
+
+ await signInAnonymously(auth);
+
+ onAuthStateChanged(auth,async user=>{
+  currentUser = user;
+
+  if(isAdmin())showAdminTools();
+  else hideAdminTools();
+
+  await refreshFavorites();
+ });
+
+ await loadRelatos();
+ await loadAchievements();
+ await refreshFavorites();
+}
+
+async function loadRelatos(){
+ try{
+  const snap = await get(
+   query(dbRef(database,"relatos"),orderByChild("criado_em"),limitToLast(150))
+  );
+
+  allRelatos = [];
+
+  snap.forEach(c=>{
+   allRelatos.push({id:c.key,...c.val()});
+  });
+
+  allRelatos.sort((a,b)=>(b.criado_em||0)-(a.criado_em||0));
+
+  renderRelatos();
+ }catch(e){
+  console.error(e);
+  countBox.textContent = "Erro ao carregar";
+  relatosBox.innerHTML = '<div class="empty">Não foi possível carregar os relatos. Confira as regras do Realtime Database.</div>';
+ }
+}
+
+function filteredRelatos(){
+ const term = $("searchInput").value.trim().toLocaleLowerCase("pt-BR");
+ const cat = $("categoryFilter").value;
+ const sort = $("sortFilter").value;
+
+ let list = allRelatos.filter(r=>
+  (!cat || r.categoria===cat) &&
+  (!term || `${r.titulo||""} ${r.texto||""}`.toLocaleLowerCase("pt-BR").includes(term))
+ );
+
+ if(sort==="oldest"){
+  list.sort((a,b)=>(a.criado_em||0)-(b.criado_em||0));
+ }
+
+ if(sort==="popular"){
+  list.sort((a,b)=>(b.total_reacoes||0)-(a.total_reacoes||0));
+ }
+
+ return list;
+}
+
+async function reactionCounts(id){
+ const snap = await get(dbRef(database,`reacoes/${id}`));
+ const counts = {};
+
+ snap.forEach(c=>{
+  const v = c.val();
+  counts[v] = (counts[v]||0)+1;
+ });
+
+ return counts;
+}
+
+async function renderRelatos(){
+ const list = filteredRelatos();
+ countBox.textContent = `${list.length} relato(s)`;
+
+ if(!list.length){
+  relatosBox.innerHTML = '<div class="empty"><h3>Nenhum relato encontrado.</h3><p>Tente mudar a pesquisa ou os filtros.</p></div>';
+  return;
+ }
+
+ const uid = currentUser?.uid;
+ const favoriteSnap = uid ? await get(dbRef(database,`favoritos/${uid}`)) : null;
+
+ relatosBox.innerHTML = list.map(r=>`
+  <article class="card" data-id="${escapeHtml(r.id)}">
+   ${r.imagem_url
+    ? `<img class="card-image" src="${escapeHtml(r.imagem_url)}" alt="Imagem do relato" loading="lazy">`
+    : '<div class="no-image">Um novo capítulo</div>'
+   }
+
+   <div class="card-body">
+    <h3>${escapeHtml(r.titulo||"Momento compartilhado")}</h3>
+    <p>${escapeHtml(r.texto||"")}</p>
+
+    <span class="date">
+     ${escapeHtml(r.categoria||"Relato")} · ${dateText(r.criado_em)}${r.anonimo?" · Anônimo":""}
+    </span>
+
+    <div class="card-actions">
+     <button class="reaction" data-react="❤️" type="button">❤️ <span data-count="❤️">…</span></button>
+     <button class="reaction" data-react="💚" type="button">💚 <span data-count="💚">…</span></button>
+     <button class="reaction" data-react="🫂" type="button">🫂 <span data-count="🫂">…</span></button>
+     <button class="reaction" data-favorite type="button">${favoriteSnap?.hasChild(r.id)?"★ Salvo":"☆ Salvar"}</button>
+     <button class="reaction" data-open type="button">Ler e comentar</button>
+    </div>
+   </div>
+  </article>
+ `).join("");
+
+ for(const card of relatosBox.querySelectorAll(".card")){
+  const id = card.dataset.id;
+  const r = allRelatos.find(x=>x.id===id);
+  const counts = await reactionCounts(id);
+
+  for(const b of card.querySelectorAll("[data-react]")){
+   const emoji = b.dataset.react;
+   b.querySelector("[data-count]").textContent = counts[emoji]||0;
+   b.addEventListener("click",()=>react(id,emoji,b));
+  }
+
+  card.querySelector("[data-favorite]").addEventListener("click",()=>{
+   toggleFavorite(id,card.querySelector("[data-favorite]"));
+  });
+
+  card.querySelector("[data-open]").addEventListener("click",()=>openModal(r));
+  card.querySelector(".card-image")?.addEventListener("click",()=>openModal(r));
+  card.querySelector(".card-body h3").addEventListener("click",()=>openModal(r));
+ }
+}
+
+async function react(id,emoji,button){
+ try{
+  const uid = requireUser().uid;
+  const path = `reacoes/${id}/${uid}`;
+  const snap = await get(dbRef(database,path));
+
+  if(snap.exists() && snap.val()===emoji){
+   await remove(dbRef(database,path));
+  }else{
+   await set(dbRef(database,path),emoji);
+  }
+
+  const counts = await reactionCounts(id);
+  button.querySelector("[data-count]").textContent = counts[emoji]||0;
+ }catch(e){
+  alert("Não foi possível registrar a reação. Confira as regras do Firebase.");
+ }
+}
+
+async function toggleFavorite(id,button){
+ try{
+  const uid = requireUser().uid;
+  const path = `favoritos/${uid}/${id}`;
+  const snap = await get(dbRef(database,path));
+
+  if(snap.exists()){
+   await remove(dbRef(database,path));
+   button.textContent = "☆ Salvar";
+  }else{
+   await set(dbRef(database,path),true);
+   button.textContent = "★ Salvo";
+  }
+
+  await refreshFavorites();
+ }catch(e){
+  alert("Não foi possível salvar o favorito.");
+ }
+}
+
+async function refreshFavorites(){
+ if(!database || !currentUser)return;
+
+ try{
+  const snap = await get(dbRef(database,`favoritos/${currentUser.uid}`));
+  const ids = [];
+
+  snap.forEach(c=>ids.push(c.key));
+
+  const items = ids.map(id=>allRelatos.find(r=>r.id===id)).filter(Boolean);
+
+  $("favoriteList").innerHTML = items.length
+   ? items.map(r=>`
+    <div class="favorite-item">
+     <strong>${escapeHtml(r.titulo)}</strong>
+     <p>${escapeHtml((r.texto||"").slice(0,110))}${(r.texto||"").length>110?"…":""}</p>
+     <button class="btn secondary small" data-fav-open="${escapeHtml(r.id)}" type="button">Abrir relato</button>
+     <button class="btn danger small" data-fav-remove="${escapeHtml(r.id)}" type="button">Remover</button>
+    </div>
+   `).join("")
+   : '<p class="subtitle">Você ainda não salvou nenhum relato.</p>';
+
+  $("favoriteList").querySelectorAll("[data-fav-open]").forEach(b=>{
+   b.addEventListener("click",()=>openModal(allRelatos.find(r=>r.id===b.dataset.favOpen)));
+  });
+
+  $("favoriteList").querySelectorAll("[data-fav-remove]").forEach(b=>{
+   b.addEventListener("click",()=>toggleFavorite(
+    b.dataset.favRemove,
+    {set textContent(v){},get textContent(){return ""}}
+   ));
+  });
+ }catch(e){
+  console.error(e);
+ }
+}
+
+function openModal(r){
+ activeRelato = r;
+ if(!r)return;
+
+ $("modalTitle").textContent = r.titulo||"Momento compartilhado";
+ $("modalText").textContent = r.texto||"";
+
+ $("modalMeta").textContent =
+  `${r.categoria||"Relato"} · ${dateText(r.criado_em)}${r.anonimo?" · Publicado anonimamente":""}`;
+
+ $("modalImage").innerHTML = r.imagem_url
+  ? `<img src="${escapeHtml(r.imagem_url)}" alt="Imagem do relato">`
+  : '<div class="modal-no-image">Um novo capítulo</div>';
+
+ modalBackdrop.classList.add("show");
+ document.body.style.overflow = "hidden";
+
+ loadComments(r.id);
+}
+
+function closeModal(){
+ modalBackdrop.classList.remove("show");
+ document.body.style.overflow = "";
+ activeRelato = null;
+}
+
+$("closeModal").addEventListener("click",closeModal);
+
+modalBackdrop.addEventListener("click",e=>{
+ if(e.target===modalBackdrop)closeModal();
+});
+
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape")closeModal();
+});
+
+async function loadComments(id){
+ const box = $("commentList");
+
+ box.innerHTML = '<p class="subtitle">Carregando comentários...</p>';
+
+ try{
+  const snap = await get(
+   dbRef(database, `comentarios/${id}`)
+  );
+
+  const items = [];
+
+  snap.forEach(c=>{
+   items.push({
+    id: c.key,
+    ...c.val()
+   });
+  });
+
+  items.sort((a,b)=>
+   (a.criado_em || 0) - (b.criado_em || 0)
+  );
+
+  const visibleItems = items.slice(-60);
+
+  box.innerHTML = visibleItems.length
+   ? visibleItems.map(c=>`
+      <div class="comment">
+       <small>
+        ${c.anonimo ? "Visitante anônimo" : "Visitante"}
+        · ${dateText(c.criado_em)}
+       </small>
+
+       <p>${escapeHtml(c.texto || "")}</p>
+
+       ${isAdmin()
+        ? `<button
+             class="btn danger small"
+             data-delete-comment="${escapeHtml(c.id)}"
+             type="button"
+           >Excluir</button>`
+        : ""
+       }
+      </div>
+     `).join("")
+   : '<p class="subtitle">Ainda não há comentários. Seja gentil e deixe a primeira mensagem de apoio.</p>';
+
+  box.querySelectorAll("[data-delete-comment]").forEach(b=>{
+   b.addEventListener("click",async()=>{
+    try{
+     await remove(
+      dbRef(database, `comentarios/${id}/${b.dataset.deleteComment}`)
+     );
+
+     await loadComments(id);
+    }catch(err){
+     console.error("Erro ao excluir comentário:",err);
+     alert("Não foi possível excluir o comentário.");
+    }
+   });
+  });
+
+ }catch(e){
+  console.error("Erro ao carregar comentários:",e);
+
+  box.innerHTML = `
+   <p class="subtitle">
+    Não foi possível carregar os comentários.
+    <br>
+    Erro: ${escapeHtml(e.code || e.message || "Desconhecido")}
+   </p>
+  `;
+ }
+}
+
+$("commentForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+
+ if(!activeRelato)return;
+
+ const texto = $("commentInput").value.trim();
+ if(!texto)return;
+
+ try{
+  const uid = requireUser().uid;
+
+  await push(dbRef(database,`comentarios/${activeRelato.id}`),{
+   texto,
+   criado_em:Date.now(),
+   uid,
+   anonimo:true
+  });
+
+  $("commentInput").value = "";
+
+  showStatus(
+   $("commentStatus"),
+   "Comentário publicado. Obrigado por manter o respeito."
+  );
+
+  await loadComments(activeRelato.id);
+ }catch(err){
+  showStatus(
+   $("commentStatus"),
+   "Não foi possível publicar. Confira as regras do Firebase.",
+   "err"
+  );
+ }
+});
+
+form.addEventListener("submit",async e=>{
+ e.preventDefault();
+
+ const titulo = titleInput.value.trim();
+ const texto = textInput.value.trim();
+ const file = photoInput.files[0];
+
+ if(!titulo || !texto){
+  showStatus(statusBox,"Preencha o título e o texto.","err");
+  return;
+ }
+
+ if(file && (
+  !["image/jpeg","image/png","image/webp"].includes(file.type) ||
+  file.size>10*1024*1024
+ )){
+  showStatus(statusBox,"Envie uma imagem JPG, PNG ou WebP de até 10 MB.","err");
+  return;
+ }
+
+ if(!database || !currentUser){
+  showStatus(statusBox,"Aguarde a conexão com o Firebase.","err");
+  return;
+ }
+
+ const btn = $("submitBtn");
+ btn.disabled = true;
+ btn.textContent = "Publicando...";
+
+ try{
+  let imagem_url = "";
+
+  if(file){
+   imagem_url = await compressImage(file);
+
+   if(imagem_url.length>400000){
+    throw new Error("IMAGE_TOO_LARGE");
+   }
+  }
+
+  const anonimo = $("anonimo").checked;
+
+  await push(dbRef(database,"relatos"),{
+   titulo,
+   texto,
+   categoria:anonimo?"Desabafo anônimo":$("categoria").value,
+   imagem_url,
+   anonimo,
+   criado_em:Date.now(),
+   uid:currentUser.uid,
+   aprovado:true,
+   total_reacoes:0
+  });
+
+  form.reset();
+
+  showStatus(
+   statusBox,
+   "Relato publicado. Obrigado por compartilhar sua história."
+  );
+
+  await loadRelatos();
+  await refreshFavorites();
+
+  $("momentos").scrollIntoView({behavior:"smooth"});
+ }catch(err){
+  console.error(err);
+
+  showStatus(
+   statusBox,
+   err.message==="IMAGE_TOO_LARGE"
+    ? "A imagem ficou grande demais. Escolha uma foto menor."
+    : "Não foi possível salvar. Confira as regras do Realtime Database.",
+   "err"
+  );
+ }finally{
+  btn.disabled = false;
+  btn.textContent = "Adicionar relato";
+ }
+});
+
+$("searchInput").addEventListener("input",renderRelatos);
+$("categoryFilter").addEventListener("change",renderRelatos);
+$("sortFilter").addEventListener("change",renderRelatos);
+
+$("achievementForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+
+ const title = $("achievementTitle").value.trim();
+ const description = $("achievementText").value.trim();
+
+ try{
+  await push(dbRef(database,"conquistas"),{
+   titulo:title,
+   texto:description,
+   categoria:$("achievementCategory").value,
+   criado_em:Date.now(),
+   uid:requireUser().uid,
+   anonimo:true
+  });
+
+  e.target.reset();
+
+  showStatus($("achievementStatus"),"Conquista compartilhada!");
+
+  await loadAchievements();
+ }catch(err){
+  showStatus(
+   $("achievementStatus"),
+   "Não foi possível publicar a conquista. Confira as regras do Firebase.",
+   "err"
+  );
+ }
+});
+
+async function loadAchievements(){
+ try{
+  const snap = await get(
+   query(dbRef(database,"conquistas"),orderByChild("criado_em"),limitToLast(50))
+  );
+
+  const items = [];
+
+  snap.forEach(c=>{
+   items.push({id:c.key,...c.val()});
+  });
+
+  items.sort((a,b)=>(b.criado_em||0)-(a.criado_em||0));
+
+  $("achievementList").innerHTML = items.length
+   ? items.map(a=>`
+    <article class="achievement-item">
+     <strong>🌱 ${escapeHtml(a.titulo)}</strong>
+     <p>${escapeHtml(a.texto||"")}</p>
+     <small>${escapeHtml(a.categoria)} · ${dateText(a.criado_em)}</small>
+     ${isAdmin()
+      ? `<button class="btn danger small" data-ach-delete="${escapeHtml(a.id)}" type="button">Excluir</button>`
+      : ""
+     }
+    </article>
+   `).join("")
+   : '<div class="empty">Ainda não há conquistas. Compartilhe a primeira!</div>';
+
+  $("achievementList").querySelectorAll("[data-ach-delete]").forEach(b=>{
+   b.addEventListener("click",async()=>{
+    if(confirm("Excluir esta conquista?")){
+     await remove(dbRef(database,`conquistas/${b.dataset.achDelete}`));
+     loadAchievements();
+    }
+   });
+  });
+ }catch(e){
+  $("achievementList").innerHTML = '<div class="empty">Não foi possível carregar as conquistas.</div>';
+ }
+}
+
+$("themeToggle").addEventListener("click",()=>{
+ const dark = document.body.classList.toggle("dark");
+
+ localStorage.setItem("encontro-theme",dark?"dark":"light");
+
+ $("themeToggle").textContent = dark
+  ? "☀️ Modo claro"
+  : "🌙 Modo escuro";
+});
+
+if(localStorage.getItem("encontro-theme")==="dark"){
+ document.body.classList.add("dark");
+ $("themeToggle").textContent = "☀️ Modo claro";
+}
+
+// A música começa somente após o clique do visitante.
+const welcomeBackdrop = $("welcomeBackdrop");
+const welcomeMusic = $("welcomeMusic");
+
+// Volume em 24%.
+welcomeMusic.volume = 0.24;
+
+$("welcomeStart").addEventListener("click",async()=>{
+ try{
+  await welcomeMusic.play();
+ }catch(error){
+  console.warn("Não foi possível iniciar a música:",error);
+
+  alert(
+   "Não consegui tocar a música. Confira se o arquivo tempo-perdido.mp3 está na mesma pasta do site."
+  );
+ }
+
+ welcomeBackdrop.remove();
+});
+
+$("adminLogin").addEventListener("submit",async e=>{
+ e.preventDefault();
+
+ const email = $("adminEmail").value.trim();
+ const password = $("adminPassword").value;
+
+ try{
+  const credential = await signInWithEmailAndPassword(auth,email,password);
+
+  currentUser = credential.user;
+
+  if(!isAdmin()){
+   await signOut(auth);
+   await signInAnonymously(auth);
+
+   currentUser = auth.currentUser;
+
+   throw new Error(
+    "Esta conta não está autorizada. Confira o ADMIN_UID no código."
+   );
+  }
+
+  showStatus($("adminStatus"),"Login administrativo realizado.");
+  showAdminTools();
+ }catch(err){
+  showStatus(
+   $("adminStatus"),
+   err.message||"Não foi possível entrar. Confira e-mail e senha.",
+   "err"
+  );
+ }
+});
+
+function showAdminTools(){
+ $("adminTools").style.display = "block";
+ $("adminIdentity").textContent = "Administrador conectado";
+ loadAdminContent();
+}
+
+function hideAdminTools(){
+ $("adminTools").style.display = "none";
+}
+
+$("adminLogout").addEventListener("click",async()=>{
+ await signOut(auth);
+ await signInAnonymously(auth);
+
+ currentUser = auth.currentUser;
+
+ hideAdminTools();
+
+ showStatus(
+  $("adminStatus"),
+  "Você saiu da área administrativa."
+ );
+});
+
+async function loadAdminContent(){
+ if(!isAdmin())return;
+
+ $("adminReports").innerHTML = allRelatos.length
+  ? allRelatos.map(r=>`
+   <div class="favorite-item">
+    <strong>${escapeHtml(r.titulo)}</strong>
+    <p>${escapeHtml((r.texto||"").slice(0,150))}</p>
+    <small>${r.anonimo?"Anônimo":"Relato"} · ${dateText(r.criado_em)}</small>
+
+    <div class="card-actions">
+     <button class="btn secondary small" data-admin-open="${escapeHtml(r.id)}" type="button">Ver</button>
+     <button class="btn danger small" data-admin-delete="${escapeHtml(r.id)}" type="button">Excluir</button>
+    </div>
+   </div>
+  `).join("")
+  : '<p class="subtitle">Nenhum relato.</p>';
+
+ $("adminReports").querySelectorAll("[data-admin-open]").forEach(b=>{
+  b.addEventListener("click",()=>{
+   openModal(allRelatos.find(r=>r.id===b.dataset.adminOpen));
+  });
+ });
+
+ $("adminReports").querySelectorAll("[data-admin-delete]").forEach(b=>{
+  b.addEventListener("click",async()=>{
+   if(confirm("Excluir permanentemente este relato e seus dados associados?")){
+    const id = b.dataset.adminDelete;
+
+    await remove(dbRef(database,`relatos/${id}`));
+    await remove(dbRef(database,`reacoes/${id}`));
+    await remove(dbRef(database,`comentarios/${id}`));
+
+    await loadRelatos();
+    loadAdminContent();
+   }
+  });
+ });
+
+ try{
+  const snap = await get(
+   query(dbRef(database,"denuncias"),orderByChild("criado_em"),limitToLast(100))
+  );
+
+  const items = [];
+
+  snap.forEach(c=>{
+   items.push({id:c.key,...c.val()});
+  });
+
+  items.reverse();
+
+  $("reportList").innerHTML = items.length
+   ? items.map(r=>`
+    <div class="favorite-item">
+     <strong>Denúncia: ${escapeHtml(r.motivo||"Conteúdo reportado")}</strong>
+     <p>${escapeHtml(r.detalhes||"Sem detalhes")}</p>
+     <small>Relato: ${escapeHtml(r.relatoId||"—")} · ${dateText(r.criado_em)}</small>
+     <button class="btn danger small" data-report-delete="${escapeHtml(r.id)}" type="button">Arquivar denúncia</button>
+    </div>
+   `).join("")
+   : '<p class="subtitle">Nenhuma denúncia recebida.</p>';
+
+  $("reportList").querySelectorAll("[data-report-delete]").forEach(b=>{
+   b.addEventListener("click",async()=>{
+    await remove(dbRef(database,`denuncias/${b.dataset.reportDelete}`));
+    loadAdminContent();
+   });
+  });
+ }catch(e){
+  $("reportList").innerHTML = '<p class="subtitle">Não foi possível carregar denúncias.</p>';
+ }
+}
+
+async function reportRelato(id){
+ const motivo = prompt(
+  "Qual é o motivo da denúncia? (spam, ofensa, exposição de dados ou outro)"
+ );
+
+ if(!motivo)return;
+
+ const detalhes = prompt("Detalhes adicionais (opcional):")||"";
+
+ try{
+  await push(dbRef(database,"denuncias"),{
+   relatoId:id,
+   motivo:motivo.slice(0,120),
+   detalhes:detalhes.slice(0,500),
+   criado_em:Date.now(),
+   uid:requireUser().uid
+  });
+
+  alert("Denúncia enviada para análise. Obrigado.");
+ }catch(e){
+  alert("Não foi possível enviar a denúncia.");
+ }
+}
+
+initialize().catch(e=>{
+ console.error("Firebase:",e);
+
+ countBox.textContent = "Erro de conexão";
+
+ relatosBox.innerHTML = `
+  <div class="empty">
+   <h3>Não foi possível conectar ao Firebase.</h3>
+   <p>Confira o projeto, o login anônimo e as regras do Realtime Database.</p>
+   <p><strong>${escapeHtml(e.code||"")}</strong> ${escapeHtml(e.message||"")}</p>
+  </div>
+ `;
+
+ showStatus(statusBox,"Falha ao conectar ao Firebase.","err");
+});
+</script>
+
+</body>
+</html>
